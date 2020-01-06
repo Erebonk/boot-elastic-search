@@ -25,14 +25,30 @@ class ProductRepositoryServiceImplTest {
     }
 
     @Test
-    void shouldSaveNewProductAndReturnSavedProduct() {
+    void shouldSaveAndFindById() {
+        Product product = new Product();
+        product.setName("test");
+        product.setUid("UID123");
+        var savedProduct = productRepository.save(product);
+        var savProd = productRepository.findById(savedProduct.getId());
+        assertNotNull(savProd);
+        assertTrue(savProd.isPresent());
+        assertNotNull(savProd.get().getId());
+    }
+
+    @Test
+    void shouldReturnSavedAllProduct() {
         var savedProducts = productRepository.findAll();
         assertNotNull(savedProducts);
         savedProducts.forEach(product -> {
             assertNotNull(product.getId());
             assertNotNull(product.getName());
         });
+    }
 
+    @Test
+    void shouldDeleteAllProducts() {
+        productRepository.deleteAll();
     }
 
 }

@@ -85,7 +85,7 @@ class ParserServiceImplTest {
                     .partnumber(pn)
                     .remote(remote)
                     .nameRus(russianName)
-                    .updateDate(LocalDate.parse(descrUpdated, DateTimeFormatter.ofPattern("yyyy.MM.dd")))
+                    .updateDate(descrUpdated)
                     .model(model)
                     .vendor(vendor)
                     .build());

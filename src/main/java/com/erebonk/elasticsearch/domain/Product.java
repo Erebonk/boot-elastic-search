@@ -23,7 +23,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-@Document(indexName = "prod_ind", type = "_doc")
+@Document(indexName = "prod_ind", type = "products")
 public class Product implements Serializable {
 
     @Id
@@ -63,7 +63,7 @@ public class Product implements Serializable {
 
     private String nameRus;
 
-    private LocalDate updateDate;
+    private String updateDate;
 
     private String model;
 
