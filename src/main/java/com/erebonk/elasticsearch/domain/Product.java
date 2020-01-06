@@ -1,19 +1,22 @@
 package com.erebonk.elasticsearch.domain;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 /**
  * Product entity
  *
  * @author ilya
- * @version 1.0
+ * @version 1.1
  */
+@Builder
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -40,6 +43,8 @@ public class Product {
 
     private BigDecimal priceRrc;
 
+    private String categoryId;
+
     private String currencyId;
 
     private String picture;
@@ -54,7 +59,7 @@ public class Product {
 
     private String nameRus;
 
-    private LocalDateTime updateDate;
+    private LocalDate updateDate;
 
     private String model;
 
