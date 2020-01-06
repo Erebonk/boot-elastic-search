@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface ProductRepositoryService {
@@ -23,4 +24,6 @@ public interface ProductRepositoryService {
     Page<Product> search(QueryBuilder queryBuilder, Pageable pageable);
 
     Iterable<Product> findAll();
+
+    List<Product> findAllByName(String name);
 }

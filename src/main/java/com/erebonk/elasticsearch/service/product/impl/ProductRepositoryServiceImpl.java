@@ -10,13 +10,14 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
  * Product repository services
  *
  * @author ilya
- * @version 1.0
+ * @version 1.1
  */
 @Component
 @RequiredArgsConstructor
@@ -57,6 +58,11 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
     @Override
     public Iterable<Product> findAll() {
         return productRepository.findAll();
+    }
+
+    @Override
+    public List<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
     }
 
 }
