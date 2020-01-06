@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -21,8 +23,10 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
+@Document(indexName = "prod_ind", type = "_doc")
 public class Product implements Serializable {
 
+    @Id
     private String id;
 
     private String uid;
