@@ -10,7 +10,6 @@ import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 /**
  * Product entity

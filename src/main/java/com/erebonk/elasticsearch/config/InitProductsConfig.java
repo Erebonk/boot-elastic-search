@@ -21,10 +21,9 @@ public class InitProductsConfig {
     private final ParserService parserService;
     private final ProductRepositoryService productRepositoryService;
 
-    @Bean
+    //@Bean // first init
     public void initProductData() {
         var productStream = parserService.parse(getClass().getResource("/static/Price-1.xml"));
         productStream.forEach(productRepositoryService::save);
     }
-
 }
