@@ -16,7 +16,7 @@ import org.springframework.context.annotation.Configuration;
 @Slf4j
 @Configuration
 @RequiredArgsConstructor
-public class InitProductsConf {
+public class InitProductsConfig {
 
     private final ParserService parserService;
     private final ProductRepositoryService productRepositoryService;
