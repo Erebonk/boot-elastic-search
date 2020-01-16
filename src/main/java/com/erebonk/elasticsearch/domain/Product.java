@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)
-@Document(indexName = "prod_ind", type = "products")
+@Document(indexName = "pr")
 public class Product implements Serializable {
 
     @Id
