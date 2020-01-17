@@ -5,6 +5,7 @@ import com.erebonk.elasticsearch.repository.ReactiveProductRepository;
 import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -27,6 +28,11 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
     @Override
     public Mono<Long> amount() {
         return reactiveProductRepository.count();
+    }
+
+    @Override
+    public Flux<Product> findAllByName(String name) {
+        return reactiveProductRepository.findByName(name);
     }
 
 //

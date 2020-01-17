@@ -11,6 +11,8 @@ public interface ProductRepositoryService {
 
     Mono<Long> amount();
 
+    Flux<Product> findAllByName(String name);
+
 
 //    Flux<Product> search(SearchQuery searchQuery);
 

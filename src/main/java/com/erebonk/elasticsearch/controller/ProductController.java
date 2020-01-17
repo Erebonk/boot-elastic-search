@@ -31,6 +31,12 @@ public class ProductController {
 
     private final ProductRepositoryService productRepositoryService;
 
+    @GetMapping
+    public Flux<Product> getProductByName(@RequestParam String name) {
+        return productRepositoryService.findAllByName(name);
+    }
+
+
 //    @GetMapping("/search")
 //    public Flux<Product> searchByText(@NotNull @RequestParam String text) {
 //        var sq = new NativeSearchQueryBuilder()
