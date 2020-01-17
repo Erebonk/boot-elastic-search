@@ -4,10 +4,7 @@ import com.erebonk.elasticsearch.domain.Product;
 import com.erebonk.elasticsearch.repository.ReactiveProductRepository;
 import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 /**
@@ -20,7 +17,18 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 public class ProductRepositoryServiceImpl implements ProductRepositoryService {
 
-//    private final ReactiveProductRepository reactiveProductRepository;
+    private final ReactiveProductRepository reactiveProductRepository;
+
+    @Override
+    public Mono<Product> save(Product product) {
+        return reactiveProductRepository.save(product);
+    }
+
+    @Override
+    public Mono<Long> amount() {
+        return reactiveProductRepository.count();
+    }
+
 //
 //    @Override
 //    public Flux<Product> search(SearchQuery searchQuery) {

@@ -25,7 +25,7 @@ class XmlParserTest {
     void shouldParseXMLAndSave() throws FileNotFoundException, XMLStreamException {
         XmlParser xmlParser = new XmlParser();
         var products = xmlParser.parse("/Volumes/SP/Price.xml");
-//        products.forEach(productRepositoryService::save);
+        products.forEach(productRepositoryService::save);
     }
 
 }
