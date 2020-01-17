@@ -8,45 +8,38 @@ import org.springframework.boot.test.context.SpringBootTest;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+/**
+ * Product repository test
+ *
+ * @author ilya
+ * @version 1.0
+ */
 @SpringBootTest
-class ReactiveProductRepositoryTest {
+class ProductRepositoryTest {
 
     @Autowired
-    ReactiveProductRepository reactiveProductRepository;
+    ProductRepository productRepository;
 
     @Test
     void shouldSaveProduct() {
-        var product = reactiveProductRepository.save(Product.builder()
+        var product = productRepository.save(Product.builder()
                 .name("test")
                 .uid("123123")
-                .build()).block();
+                .build());
         assertNotNull(product);
         assertNotNull(product.getId());
     }
 
     @Test
     void shouldFindAllProducts() {
-        var products = reactiveProductRepository.findAll();
+        var products = productRepository.findAll();
         assertNotNull(products);
-        var productsList = products.collectList().block();
-        assertNotNull(productsList);
     }
 
     @Test
     void shouldReturnAvailAmountOfProducts() {
-        var availAmount = reactiveProductRepository.count().block();
-        assertNotNull(availAmount);
+        var availAmount = productRepository.count();
         assertTrue(availAmount > 0);
     }
-
-    @Test
-    void shouldExecuteFindAllByNameAndReturnAvailProducts() {
-        var searchProducts = reactiveProductRepository.findByName("hp").toStream();
-        searchProducts.forEach(product -> {
-            assertNotNull(product.getId());
-        });
-    }
-
-
 
 }

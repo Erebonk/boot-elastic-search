@@ -1,19 +1,20 @@
 package com.erebonk.elasticsearch.service.product;
 
 import com.erebonk.elasticsearch.domain.Product;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
+import org.springframework.data.domain.Page;
 
+/**
+ * Product repository services
+ *
+ * @author ilya
+ * @version 1.0
+ */
 public interface ProductRepositoryService {
 
-    Mono<Product> save(Product product);
+    Product save(Product product);
 
-    Mono<Long> amount();
+    long amount();
 
-    Flux<Product> findAllByName(String name);
-
-
-//    Flux<Product> search(SearchQuery searchQuery);
+    Page<Product> search(String text);
 
 }

@@ -8,6 +8,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.LocalDateTime;
 
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
 @SpringBootTest
 class ProductControllerTest {
 
@@ -19,9 +21,10 @@ class ProductControllerTest {
     @Test
     void shouldFindAllProductsWhichStartsWithHP() {
         logger.info(() -> "start: " + LocalDateTime.now());
-//        var products = productController.searchByText("hp pavilion 15");
+        var products = productController.searchByText("hp pavilion 15");
+        assertNotNull(products);
         logger.info(() -> "end: " + LocalDateTime.now());
-//        logger.info(() -> "total products: " + products.collectList().block().size());
+        logger.info(() -> "total products: " + products.get().count());
     }
 
 }

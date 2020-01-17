@@ -5,14 +5,16 @@ import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 /**
  * Init configuration for elastic search
  *
  * @author ilya
- * @version 1.0
+ * @version 1.2
  */
 @Slf4j
 @Configuration
@@ -21,20 +23,20 @@ public class InitProductsConfig {
 
     private final ProductRepositoryService productRepositoryService;
 
-    @Value("${settings.product.url}")
-    private String address;
+    @Value("${own.product.path}")
+    private String pathValue;
 
     @Bean
     public void initProductData() {
         try {
-            var amount = productRepositoryService.amount().block();
-            if (amount != null && amount > 0) {
+            if (productRepositoryService.amount() <= 0L) {
                 log.info("init new catalog....");
                 XmlParser xmlParser = new XmlParser();
                 try {
-                    xmlParser.parse(address).forEach(productRepositoryService::save);
+                    xmlParser.parse(pathValue).forEach(productRepositoryService::save);
                 } catch (Exception ex) {
-                    log.error("Error with creating products... see more details: " + ex.getLocalizedMessage());
+                    log.error("Error with creating products... see more details: "
+                            + ex.getLocalizedMessage());
                 }
                 log.info("ready...");
             }

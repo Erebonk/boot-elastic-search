@@ -1,6 +1,6 @@
 package com.erebonk.elasticsearch.config;
 
-import com.erebonk.elasticsearch.repository.ReactiveProductRepository;
+import com.erebonk.elasticsearch.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -9,14 +9,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 class InitProductsConfigTest {
 
     @Autowired
-    ReactiveProductRepository reactiveProductRepository;
+    ProductRepository productRepository;
 
     @Autowired
     InitProductsConfig initProductsConfig;
 
     @Test
     void hardProductsInit() {
-        reactiveProductRepository.deleteAll();
+        productRepository.deleteAll();
         initProductsConfig.initProductData();
    }
 
