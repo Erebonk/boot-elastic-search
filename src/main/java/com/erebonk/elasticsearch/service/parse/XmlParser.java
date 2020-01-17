@@ -14,24 +14,23 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
+import java.util.stream.Stream;
 
 /**
- * Xml parser for products
+ * Xml parser for products xml list
  *
  * @author ilya
- * @version 1.0
+ * @version 1.1
  */
 public class XmlParser {
 
-    private List<Product> products = new ArrayList<>();
-
-    public List<Product> parse(@NotNull String address) throws FileNotFoundException, XMLStreamException {
+    public Stream<Product> parse(@NotNull String address) throws FileNotFoundException, XMLStreamException {
         XMLInputFactory inputFactory = XMLInputFactory.newInstance();
         InputStream in = new FileInputStream(address);
         XMLEventReader eventReader = inputFactory.createXMLEventReader(in, "Windows-1251");
+
+        Stream.Builder<Product> productStream = Stream.builder();
         Product product = null;
 
         while (eventReader.hasNext()) {
@@ -55,111 +54,142 @@ public class XmlParser {
 
                 // data
                 if (event.isStartElement()) {
-                    if (event.asStartElement().getName().getLocalPart().equals("uid")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setUid(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("url")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setUrl(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceR")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceR(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceB")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceB(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceC")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceC(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceD")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceD(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceE")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceE(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceF")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceF(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("priceRRP")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPriceRrc(BigDecimal.valueOf(Double.parseDouble(event.asCharacters().getData())));
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("currencyId")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setCurrencyId(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("categoryId")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setCategoryId(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("picture")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPicture(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("name")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setName(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("PN")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setPartnumber(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("RussianName")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setNameRus(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("DescrUpdated")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setUpdateDate(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("Model")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setModel(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("Vendor")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setVendor(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("currencyId")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setCurrencyId(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("currencyId")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setCurrencyId(event.asCharacters().getData());
-                        }
-                    } else if (event.asStartElement().getName().getLocalPart().equals("currencyId")) {
-                        event = eventReader.nextEvent();
-                        if (!event.isEndElement()) {
-                            product.setCurrencyId(event.asCharacters().getData());
-                        }
+                    switch (event.asStartElement().getName().getLocalPart()) {
+                        case "uid":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setUid(event.asCharacters().getData());
+                            }
+                            break;
+                        case "url":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setUrl(event.asCharacters().getData());
+                            }
+                            break;
+                        case "priceR":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceR(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceB":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceB(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceC":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceC(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceD":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceD(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceE":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceE(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceF":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceF(BigDecimal.valueOf(
+                                        Double.parseDouble(event.asCharacters().getData())));
+                            }
+                            break;
+                        case "priceRRP":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPriceRrc(
+                                        BigDecimal.valueOf(
+                                                Double.parseDouble(
+                                                        event.asCharacters().getData())));
+                            }
+                            break;
+                        case "currencyId":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setCurrencyId(event.asCharacters().getData());
+                            }
+                            break;
+                        case "categoryId":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setCategoryId(event.asCharacters().getData());
+                            }
+                            break;
+                        case "picture":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPicture(event.asCharacters().getData());
+                            }
+                            break;
+                        case "name":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setName(event.asCharacters().getData());
+                            }
+                            break;
+                        case "PN":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setPartnumber(event.asCharacters().getData());
+                            }
+                            break;
+                        case "RussianName":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setNameRus(event.asCharacters().getData());
+                            }
+                            break;
+                        case "DescrUpdated":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setUpdateDate(event.asCharacters().getData());
+                            }
+                            break;
+                        case "Model":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setModel(event.asCharacters().getData());
+                            }
+                            break;
+                        case "Vendor":
+                            event = eventReader.nextEvent();
+                            if (!event.isEndElement()) {
+                                assert product != null;
+                                product.setVendor(event.asCharacters().getData());
+                            }
+                            break;
                     }
                 }
             }
@@ -168,12 +198,12 @@ public class XmlParser {
             if (event.isEndElement()) {
                 EndElement endElement = event.asEndElement();
                 if (endElement.getName().getLocalPart().equals("offer")) {
-                    products.add(product);
+                    productStream.add(product);
                     System.out.println("--end of an item\n");
                 }
             }
         }
-        return products;
+        return productStream.build();
     }
 
 }

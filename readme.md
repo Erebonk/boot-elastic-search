@@ -15,3 +15,6 @@ _-> Spring boot 2.2.2
 
   docs:
 `https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html`
+
+
+https://www.programcreek.com/2011/08/java-parse-xml-by-using-stax/
