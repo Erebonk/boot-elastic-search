@@ -20,5 +20,4 @@ class InitProductsConfigTest {
         initProductsConfig.initProductData();
    }
 
-
 }

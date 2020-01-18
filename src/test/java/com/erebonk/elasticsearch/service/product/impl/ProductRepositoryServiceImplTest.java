@@ -8,6 +8,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Product repo services test
+ *
+ * @author ilya
+ * @version 1.o
+ */
 @SpringBootTest
 class ProductRepositoryServiceImplTest {
 

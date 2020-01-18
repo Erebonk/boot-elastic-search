@@ -10,6 +10,12 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Search test
+ *
+ * @author ilya
+ * @version 1.0
+ */
 @SpringBootTest
 class ProductControllerTest {
 
