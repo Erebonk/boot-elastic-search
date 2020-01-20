@@ -42,4 +42,10 @@ class ProductRepositoryTest {
         assertTrue(availAmount > 0);
     }
 
+    @Test
+    void shouldDeleteAllProducts() {
+        productRepository.deleteAll();
+    }
+
+
 }
