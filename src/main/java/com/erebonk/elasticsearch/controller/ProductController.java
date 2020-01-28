@@ -1,7 +1,7 @@
 package com.erebonk.elasticsearch.controller;
 
 import com.erebonk.elasticsearch.domain.Product;
-import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
+import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;

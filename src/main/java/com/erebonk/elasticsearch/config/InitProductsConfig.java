@@ -1,7 +1,7 @@
 package com.erebonk.elasticsearch.config;
 
 import com.erebonk.elasticsearch.service.parse.ParserService;
-import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
+import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;

@@ -1,6 +1,6 @@
 spring:
   application:
-    name: elastic-product
+    name: elastic-service
   profiles:
     active: production
   elasticsearch:
@@ -13,3 +13,4 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true

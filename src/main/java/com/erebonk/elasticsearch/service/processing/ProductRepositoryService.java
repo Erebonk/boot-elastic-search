@@ -1,4 +1,4 @@
-package com.erebonk.elasticsearch.service.product;
+package com.erebonk.elasticsearch.service.processing;
 
 import com.erebonk.elasticsearch.domain.Product;
 import org.elasticsearch.index.query.QueryBuilder;
@@ -8,7 +8,14 @@ import org.springframework.data.elasticsearch.core.query.SearchQuery;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
+/**
+ * Products services repository
+ *
+ * @author ilya
+ * @version 1.0x
+ */
 public interface ProductRepositoryService {
 
     Product save(Product product);
@@ -26,4 +33,5 @@ public interface ProductRepositoryService {
     Iterable<Product> findAll();
 
     List<Product> findAllByName(String name);
+
 }
