@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 
 /**
  * Init configuration for elastic search
@@ -14,6 +15,7 @@ import org.springframework.context.annotation.Configuration;
  * @version 1.0
  */
 @Slf4j
+@Profile("dev")
 @Configuration
 @RequiredArgsConstructor
 public class InitProductsConfig {
@@ -21,7 +23,7 @@ public class InitProductsConfig {
     private final ParserService parserService;
     private final ProductRepositoryService productRepositoryService;
 
-    //@Bean // first init
+    @Bean
     public void initProductData() {
         var productStream = parserService.parse(getClass().getResource("/static/Price-1.xml"));
         productStream.forEach(productRepositoryService::save);
