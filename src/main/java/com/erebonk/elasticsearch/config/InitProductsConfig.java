@@ -1,6 +1,6 @@
 package com.erebonk.elasticsearch.config;
 
-import com.erebonk.elasticsearch.service.parse.ParserService;
+import com.erebonk.elasticsearch.service.parser.impl.ParserService;
 import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +25,7 @@ public class InitProductsConfig {
 
     @Bean
     public void initProductData() {
-        var productStream = parserService.parse(getClass().getResource("/static/Price-1.xml"));
+        var productStream = parserService.parse(getClass().getResource("/static/Price-1.xml").toString());
         productStream.forEach(productRepositoryService::save);
     }
 }

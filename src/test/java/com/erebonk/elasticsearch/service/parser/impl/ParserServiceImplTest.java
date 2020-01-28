@@ -1,4 +1,4 @@
-package com.erebonk.elasticsearch.service.parse.impl;
+package com.erebonk.elasticsearch.service.parser.impl;
 
 import com.erebonk.elasticsearch.domain.Product;
 import org.junit.jupiter.api.Test;
@@ -66,6 +66,7 @@ class ParserServiceImplTest {
             var descrUpdated = eElement.getElementsByTagName("DescrUpdated").item(0).getTextContent();
             var model = eElement.getElementsByTagName("Model").item(0).getTextContent();
             var vendor = eElement.getElementsByTagName("Vendor").item(0).getTextContent();
+
             productStream.add(Product.builder()
                     .uid(uid)
                     .url(url)

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 /**
  * Product controller
@@ -27,6 +28,11 @@ import javax.validation.constraints.NotNull;
 public class ProductController {
 
     private final ProductRepositoryService productRepositoryService;
+
+    @GetMapping
+    public List<Product> findAllByName(@NotNull @RequestParam String name) {
+        return productRepositoryService.findAllByName(name);
+    }
 
     @GetMapping("/search")
     public Page<Product> searchByText(@NotNull @RequestParam String text) {

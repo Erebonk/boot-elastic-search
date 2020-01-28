@@ -10,13 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 /**
  * Product repository services
  *
  * @author ilya
- * @version 1.3
+ * @version 1.4
  */
 @Component
 @RequiredArgsConstructor
@@ -54,6 +55,11 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
             semaphore.release();
         }
         return Page.empty();
+    }
+
+    @Override
+    public List<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
     }
 
 }
