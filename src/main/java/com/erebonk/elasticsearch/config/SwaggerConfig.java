@@ -8,7 +8,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Add openApi for controller
+ * Inject swagger
  *
  * @author ilya
  * @version 1.0

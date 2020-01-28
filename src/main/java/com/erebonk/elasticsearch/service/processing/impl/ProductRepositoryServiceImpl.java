@@ -4,20 +4,19 @@ import com.erebonk.elasticsearch.domain.Product;
 import com.erebonk.elasticsearch.repository.ProductRepository;
 import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
-import org.elasticsearch.index.query.QueryBuilder;
+import org.elasticsearch.index.query.MultiMatchQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.SearchQuery;
+import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.concurrent.Semaphore;
 
 /**
  * Product repository services
  *
  * @author ilya
- * @version 1.1
+ * @version 1.3
  */
 @Component
 @RequiredArgsConstructor
@@ -25,44 +24,36 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
 
     private final ProductRepository productRepository;
 
+    private Semaphore semaphore = new Semaphore(40);
+
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
     }
 
     @Override
-    public Iterable<? extends Product> saveAll(Iterable<? extends Product> entities) {
-        return productRepository.saveAll(entities);
+    public long amount() {
+        return productRepository.count();
     }
 
     @Override
-    public Optional<Product> findProductById(String id) {
-        return productRepository.findById(id);
-    }
-
-    @Override
-    public Iterable<Product> search(QueryBuilder queryBuilder) {
-        return productRepository.search(queryBuilder);
-    }
-
-    @Override
-    public Page<Product> search(SearchQuery searchQuery) {
-        return productRepository.search(searchQuery);
-    }
-
-    @Override
-    public Page<Product> search(QueryBuilder queryBuilder, Pageable pageable) {
-        return productRepository.search(queryBuilder, pageable);
-    }
-
-    @Override
-    public Iterable<Product> findAll() {
-        return productRepository.findAll();
-    }
-
-    @Override
-    public List<Product> findAllByName(String name) {
-        return productRepository.findAllByName(name);
+    public Page<Product> search(String text) {
+        try {
+            semaphore.acquire();
+            var sq = new NativeSearchQueryBuilder()
+                    .withQuery(QueryBuilders.multiMatchQuery(text)
+                            .field("name")
+                            .field("rusName")
+                            .field("vendor")
+                            .type(MultiMatchQueryBuilder.Type.BEST_FIELDS))
+                    .build();
+            return productRepository.search(sq);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            semaphore.release();
+        }
+        return Page.empty();
     }
 
 }
