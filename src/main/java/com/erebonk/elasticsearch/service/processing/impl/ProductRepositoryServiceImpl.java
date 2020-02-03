@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
@@ -41,14 +43,16 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
     public Page<Product> search(String text) {
         try {
             semaphore.acquire();
-            var sq = new NativeSearchQueryBuilder()
-                    .withQuery(QueryBuilders.multiMatchQuery(text)
-                            .field("name")
-                            .field("rusName")
-                            .field("vendor")
-                            .type(MultiMatchQueryBuilder.Type.BEST_FIELDS))
-                    .build();
-            return productRepository.search(sq);
+
+            var pageable = PageRequest.of(0, 20);
+
+            var qb = QueryBuilders.multiMatchQuery(text)
+                    .field("name")
+                    .field("rusName")
+                    .field("vendor")
+                    .type(MultiMatchQueryBuilder.Type.BEST_FIELDS);
+
+            return productRepository.search(qb, pageable);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {

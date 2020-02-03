@@ -1,2 +1,9 @@
 server:
-  port: 9001
+  port: 9000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: hystrix.stream
+      base-path: /

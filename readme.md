@@ -19,3 +19,7 @@ elastic docs:
 
 fast parser for xml:
 'https://www.programcreek.com/2011/08/java-parse-xml-by-using-stax/'
+
+
+Sorting result:
+https://www.codeflow.site/ru/article/spring-data-jpa-pagination-sorting
