@@ -8,8 +8,14 @@ _-> Spring boot 2.2.2
 
 More information: 
 
- add elastic to docker:
-`https://hub.docker.com/_/elasticsearch?tab=description`
+    Firstly: add elasticsearch to docker:
+     add elastic to docker:
+    `https://hub.docker.com/_/elasticsearch?tab=description`
+    
+    Run as Spring application or Gradle bootJar
+    
+    
+ Useful links:   
 
 common elastic service:
 `https://www.elastic.co/downloads/`
@@ -19,7 +25,6 @@ elastic docs:
 
 fast parser for xml:
 'https://www.programcreek.com/2011/08/java-parse-xml-by-using-stax/'
-
 
 Sorting result:
 https://www.codeflow.site/ru/article/spring-data-jpa-pagination-sorting
