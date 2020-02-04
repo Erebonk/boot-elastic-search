@@ -2,7 +2,7 @@
 
 # Spring boot 2, Jpa with ElasticSearch
 
-_-> Spring boot 2.2.2
+_-> Spring boot 2.2.4
 -> JDOM for xml
 -> Jpa_ 
 
