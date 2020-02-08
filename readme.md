@@ -2,19 +2,29 @@
 
 # Spring boot 2, Jpa with ElasticSearch
 
-_-> Spring boot 2.2.2
+_-> Spring boot 2.2.4
 -> JDOM for xml
 -> Jpa_ 
 
-    More information: 
-  add in docker:
-`https://hub.docker.com/_/elasticsearch?tab=description`
+More information: 
 
-  common service:
+    Firstly: add elasticsearch to docker:
+     add elastic to docker:
+    `https://hub.docker.com/_/elasticsearch?tab=description`
+    
+    Run as Spring application or Gradle bootJar
+    
+    
+ Useful links:   
+
+common elastic service:
 `https://www.elastic.co/downloads/`
 
-  docs:
+elastic docs:
 `https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html`
 
-  fast parser:
+fast parser for xml:
 'https://www.programcreek.com/2011/08/java-parse-xml-by-using-stax/'
+
+Sorting result:
+https://www.codeflow.site/ru/article/spring-data-jpa-pagination-sorting

@@ -1,22 +1,25 @@
-package com.erebonk.elasticsearch.service.product.impl;
+package com.erebonk.elasticsearch.service.processing.impl;
 
 import com.erebonk.elasticsearch.domain.Product;
 import com.erebonk.elasticsearch.repository.ProductRepository;
-import com.erebonk.elasticsearch.service.product.ProductRepositoryService;
+import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.Semaphore;
 
 /**
  * Product repository services
  *
  * @author ilya
- * @version 1.3
+ * @version 1.4
  */
 @Component
 @RequiredArgsConstructor
@@ -40,20 +43,27 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
     public Page<Product> search(String text) {
         try {
             semaphore.acquire();
-            var sq = new NativeSearchQueryBuilder()
-                    .withQuery(QueryBuilders.multiMatchQuery(text)
-                            .field("name")
-                            .field("rusName")
-                            .field("vendor")
-                            .type(MultiMatchQueryBuilder.Type.BEST_FIELDS))
-                    .build();
-            return productRepository.search(sq);
+
+            var pageable = PageRequest.of(0, 20);
+
+            var qb = QueryBuilders.multiMatchQuery(text)
+                    .field("name")
+                    .field("rusName")
+                    .field("vendor")
+                    .type(MultiMatchQueryBuilder.Type.BEST_FIELDS);
+
+            return productRepository.search(qb, pageable);
         } catch (InterruptedException e) {
             e.printStackTrace();
         } finally {
             semaphore.release();
         }
         return Page.empty();
+    }
+
+    @Override
+    public List<Product> findAllByName(String name) {
+        return productRepository.findAllByName(name);
     }
 
 }

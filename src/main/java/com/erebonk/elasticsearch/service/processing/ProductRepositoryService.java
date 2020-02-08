@@ -1,13 +1,15 @@
-package com.erebonk.elasticsearch.service.product;
+package com.erebonk.elasticsearch.service.processing;
 
 import com.erebonk.elasticsearch.domain.Product;
 import org.springframework.data.domain.Page;
 
+import java.util.List;
+
 /**
- * Product repository services
+ * Product repository
  *
  * @author ilya
- * @version 1.0
+ * @version 1.1
  */
 public interface ProductRepositoryService {
 
@@ -16,5 +18,7 @@ public interface ProductRepositoryService {
     long amount();
 
     Page<Product> search(String text);
+
+    List<Product> findAllByName(String name);
 
 }

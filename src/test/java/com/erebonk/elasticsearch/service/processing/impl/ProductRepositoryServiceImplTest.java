@@ -1,4 +1,4 @@
-package com.erebonk.elasticsearch.service.product.impl;
+package com.erebonk.elasticsearch.service.processing.impl;
 
 import com.erebonk.elasticsearch.domain.Product;
 import com.erebonk.elasticsearch.repository.ProductRepository;
