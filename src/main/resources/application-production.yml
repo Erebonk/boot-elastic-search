@@ -3,7 +3,6 @@ spring:
     rest:
       uris: http://localhost:9200
 
-
 javamelody:
   enabled: true
   excluded-datasources: secretSource,topSecretSource
