@@ -50,7 +50,7 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
                     .field("name")
                     .field("rusName")
                     .field("vendor")
-                    .type(MultiMatchQueryBuilder.Type.BEST_FIELDS);
+                    .type(MultiMatchQueryBuilder.Type.PHRASE_PREFIX);
 
             return productRepository.search(qb, pageable);
         } catch (InterruptedException e) {
