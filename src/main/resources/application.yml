@@ -1,2 +1,7 @@
 server:
-  port: 9000
+  port: 9001
+
+logging:
+  file:
+    name: search.log
+    path: Users/ilia/applogs/
