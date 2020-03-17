@@ -1,7 +1,9 @@
 package com.erebonk.elasticsearch.domain;
 
-import lombok.*;
-import lombok.experimental.Accessors;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 
@@ -15,9 +17,9 @@ import java.math.BigDecimal;
  * @version 1.1
  */
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Accessors(chain = true)
 @Document(indexName = "product", type = "_doc")
 public class Product implements Serializable {
 
