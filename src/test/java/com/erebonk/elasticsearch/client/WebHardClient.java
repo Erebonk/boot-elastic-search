@@ -1,10 +1,8 @@
 package com.erebonk.elasticsearch.client;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 import java.util.concurrent.ExecutorService;
@@ -13,9 +11,14 @@ import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+/**
+ * Fixed test
+ *
+ * @author ilya
+ * @version 1.0
+ */
 @SpringBootTest
 class WebHardClient {
-
 
     TestRestTemplate restTemplate = new TestRestTemplate();
 
