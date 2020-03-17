@@ -2,9 +2,12 @@
 
 # Spring boot 2, Jpa with ElasticSearch
 
-_-> Spring boot 2.2.4
+_-> Spring boot 2.2.5
 -> JDOM for xml
--> Jpa_ 
+-> Jpa
+
++ add logstash for this service. (ypu can use a file logstash.config)
+
 
 More information: 
 
