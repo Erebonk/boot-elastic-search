@@ -1,5 +1,6 @@
 package com.erebonk.elasticsearch.controller;
 
+import com.erebonk.elasticsearch.domain.LoggerStash;
 import com.erebonk.elasticsearch.domain.Product;
 import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,7 @@ import java.util.List;
  *
  *
  * @author ilya
- * @version 1.1
+ * @version 1.2
  */
 @Slf4j
 @RestController
@@ -31,11 +32,13 @@ public class ProductController {
 
     private final ProductRepositoryService productRepositoryService;
 
+    @LoggerStash
     @GetMapping
     public List<Product> findAllByName(@NotNull @RequestParam String name) {
         return productRepositoryService.findAllByName(name);
     }
 
+    @LoggerStash
     @GetMapping("/search")
     public Page<Product> searchByText(@NotNull @RequestParam String text) {
         return productRepositoryService.search(text);

@@ -8,8 +8,6 @@ import org.elasticsearch.index.query.MultiMatchQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.elasticsearch.core.query.NativeSearchQueryBuilder;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -19,7 +17,7 @@ import java.util.concurrent.Semaphore;
  * Product repository services
  *
  * @author ilya
- * @version 1.4
+ * @version 1.5
  */
 @Component
 @RequiredArgsConstructor
@@ -32,11 +30,6 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
     @Override
     public Product save(Product product) {
         return productRepository.save(product);
-    }
-
-    @Override
-    public long amount() {
-        return productRepository.count();
     }
 
     @Override

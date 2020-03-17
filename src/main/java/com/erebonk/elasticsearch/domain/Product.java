@@ -15,7 +15,6 @@ import java.math.BigDecimal;
  * @version 1.1
  */
 @Data
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)

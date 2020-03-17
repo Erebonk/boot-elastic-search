@@ -4,4 +4,3 @@ server:
 logging:
   file:
     name: search.log
-    path: Users/ilia/applogs/

@@ -15,8 +15,6 @@ public interface ProductRepositoryService {
 
     Product save(Product product);
 
-    long amount();
-
     Page<Product> search(String text);
 
     List<Product> findAllByName(String name);
