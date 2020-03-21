@@ -1,6 +1,6 @@
 package com.erebonk.elasticsearch.config;
 
-import com.erebonk.elasticsearch.service.parser.impl.ParserService;
+import com.erebonk.elasticsearch.service.parser.ParserService;
 import com.erebonk.elasticsearch.service.processing.ProductRepositoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

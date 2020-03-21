@@ -1,6 +1,7 @@
 package com.erebonk.elasticsearch.service.parser.impl;
 
 import com.erebonk.elasticsearch.domain.Product;
+import com.erebonk.elasticsearch.service.parser.ParserService;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.validation.constraints.NotNull;
