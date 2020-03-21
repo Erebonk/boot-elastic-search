@@ -12,5 +12,5 @@ eureka:
     appname: elastic-service
   client:
     serviceUrl:
-      defaultZone: http://eureka-client:526982649a256cd93ca8d22cc394d5b1660254d4e2fb0982a71986e8b0e0374c@localhost:8761/eureka/
+      defaultZone: http://localhost:8761/eureka/
     fetch-registry: true

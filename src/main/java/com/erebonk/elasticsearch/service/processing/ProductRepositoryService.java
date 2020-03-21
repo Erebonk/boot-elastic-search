@@ -3,8 +3,6 @@ package com.erebonk.elasticsearch.service.processing;
 import com.erebonk.elasticsearch.domain.Product;
 import org.springframework.data.domain.Page;
 
-import java.util.List;
-
 /**
  * Product repository
  *
@@ -16,7 +14,5 @@ public interface ProductRepositoryService {
     Product save(Product product);
 
     Page<Product> search(String text);
-
-    List<Product> findAllByName(String name);
 
 }

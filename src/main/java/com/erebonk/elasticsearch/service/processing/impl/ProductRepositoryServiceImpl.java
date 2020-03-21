@@ -10,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.concurrent.Semaphore;
 
 /**
@@ -38,7 +37,6 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
             semaphore.acquire();
 
             var pageable = PageRequest.of(0, 20);
-
             var qb = QueryBuilders.multiMatchQuery(text)
                     .field("name")
                     .field("rusName")
@@ -52,11 +50,6 @@ public class ProductRepositoryServiceImpl implements ProductRepositoryService {
             semaphore.release();
         }
         return Page.empty();
-    }
-
-    @Override
-    public List<Product> findAllByName(String name) {
-        return productRepository.findAllByName(name);
     }
 
 }

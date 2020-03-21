@@ -885,3 +885,12 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2020-03-17 23:42:05.906  INFO 23415 --- [http-nio-9001-exec-5] c.e.elasticsearch.config.LoggerConfig    : Method called: searchByTextargs: [hp pavilion]
 2020-03-17 23:42:17.575  WARN 23415 --- [I/O dispatcher 1] org.elasticsearch.client.RestClient      : request [POST http://localhost:9200/product/_doc/_search?rest_total_hits_as_int=true&typed_keys=true&ignore_unavailable=false&expand_wildcards=open&allow_no_indices=true&ignore_throttled=true&search_type=dfs_query_then_fetch&batched_reduce_size=512] returned 1 warnings: [299 Elasticsearch-7.6.1-aa751e09be0a5072e8570670309b1f12348f023b "[types removal] Specifying types in search requests is deprecated."]
 2020-03-17 23:42:17.579  INFO 23415 --- [http-nio-9001-exec-4] c.e.elasticsearch.config.LoggerConfig    : Method called: searchByTextargs: [hp pavilion 13]
+2020-03-17 23:43:38.479  INFO 23415 --- [SpringContextShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application ELASTIC-SERVICE with eureka with status DOWN
+2020-03-17 23:43:38.482  WARN 23415 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1584477818482, current=DOWN, previous=UP]
+2020-03-17 23:43:38.483  INFO 23415 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ELASTIC-SERVICE/192.168.100.2:elastic-service:9001: registering service...
+2020-03-17 23:43:38.519  INFO 23415 --- [DiscoveryClient-InstanceInfoReplicator-0] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ELASTIC-SERVICE/192.168.100.2:elastic-service:9001 - registration status: 204
+2020-03-17 23:43:38.528  INFO 23415 --- [SpringContextShutdownHook] o.s.s.concurrent.ThreadPoolTaskExecutor  : Shutting down ExecutorService 'applicationTaskExecutor'
+2020-03-17 23:43:38.547  INFO 23415 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2020-03-17 23:43:41.552  INFO 23415 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2020-03-17 23:43:41.583  INFO 23415 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_ELASTIC-SERVICE/192.168.100.2:elastic-service:9001 - deregister  status: 200
+2020-03-17 23:43:41.596  INFO 23415 --- [SpringContextShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

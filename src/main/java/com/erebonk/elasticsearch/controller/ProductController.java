@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.NotNull;
-import java.util.List;
 
 /**
  * Product controller
@@ -22,7 +21,7 @@ import java.util.List;
  *
  *
  * @author ilya
- * @version 1.2
+ * @version 1.3
  */
 @Slf4j
 @RestController
@@ -31,12 +30,6 @@ import java.util.List;
 public class ProductController {
 
     private final ProductRepositoryService productRepositoryService;
-
-    @LoggerStash
-    @GetMapping
-    public List<Product> findAllByName(@NotNull @RequestParam String name) {
-        return productRepositoryService.findAllByName(name);
-    }
 
     @LoggerStash
     @GetMapping("/search")

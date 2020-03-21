@@ -1,4 +1,4 @@
-package com.erebonk.elasticsearch.service.parser.impl;
+package com.erebonk.elasticsearch.service.parser;
 
 import com.erebonk.elasticsearch.domain.Product;
 
