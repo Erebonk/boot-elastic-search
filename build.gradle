@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.erebonk'
-version = '0.0.4'
+version = '0.0.5'
 sourceCompatibility = '13'
 
 configurations {
@@ -23,7 +23,6 @@ ext {
 }
 
 dependencies {
-	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
 	implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'

@@ -4,3 +4,12 @@ server:
 logging:
   file:
     name: search.log
+
+spring:
+  application:
+    name: elastic-service
+  profiles:
+    active: production
+  elasticsearch:
+    rest:
+      uris: http://localhost:9200
